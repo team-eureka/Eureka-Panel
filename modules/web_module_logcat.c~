@@ -1,0 +1,17 @@
+/*
+This module presents logcat information to the user
+*/
+
+int web_module_logcat(void){
+      //Read whitelist from file, print to web.
+  	FILE *ptr_file;
+  	char buf[1000];
+	char path[1035];
+         printf( "<font style=\"color:white\">Logcat Results:</font><br /><br />");
+  	//check if whitelist apps.conf exists in data (if not use system apps.conf)
+	ptr_file = popen("logcat -d -t 40 -v time", "r");
+	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
+		printf( "%s <br />", path );
+	}
+
+}

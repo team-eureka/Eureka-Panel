@@ -1,0 +1,12 @@
+int web_module_footer(void){
+
+  //Print footer
+ printf("<br /> <br /> Powered by Team-Eureka \n");
+  printf("         </div></div>\n");
+ printf("      </div>\n");
+ printf("    </div>\n");
+ printf("  </body>\n");
+ printf("</html>\n");
+ 
+
+}
