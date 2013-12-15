@@ -117,6 +117,7 @@ int web_module_settings(){
   //echo out current used variables
   printf("<div align=\"center\" style=\"text-align:center;\">");
   printf("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"\">  <input name=\"action\" type=\"hidden\" id=  \"action\" value=\"update\" />");
+  printf("<input name=\"page\" type=\"hidden\" id=  \"settings\" value=\"settings\" />");
   printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>Rom Settings</b></font></div></div><br/>\n");
   printRadioFieldChange("Team Eureka OTA Updates", "EurekaRom", "ota");
   

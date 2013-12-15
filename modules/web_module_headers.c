@@ -1,6 +1,7 @@
 #define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
 int web_module_headers(const char * page){
-
+  printf( "HTTP/1.1 200 OK\n" );
+  printf( "Content-Type: text/html; charset=UTF-8\n" );
   //Print headers
   printf("\n<html>\n<head>\n<meta charset=\"utf-8\" /><title>Chromecast Configuration Panel - Eureka Rom</title>\n");
   //jquery insert
@@ -82,12 +83,12 @@ printf("\n                  <li>");
 }
 printf("\n                    <a href=\"?page=settings\">Settings</a>");
 printf("\n                  </li>");
-if ( compStr(page, "logcat", sizearray(page) )) { 
+if ( compStr(page, "debug", sizearray(page) )) { 
 printf("\n                  <li class=\"current\">");
 } else {
 printf("\n                  <li>");
 }
-printf("\n                    <a href=\"?page=logcat\">Logcat</a>");
+printf("\n                    <a href=\"?page=debug\">Debug</a>");
 printf("\n                  </li>");
 if ( compStr(page, "aboutus", sizearray(page) )) { 
 printf("\n                  <li class=\"current\">");

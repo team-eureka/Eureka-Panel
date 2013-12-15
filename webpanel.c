@@ -12,7 +12,10 @@
 #include "modules/web_module_headers.c"
 #include "modules/web_module_footer.c"
 #include "modules/web_module_status.c"
+#include "modules/web_module_debug.c"
+#include "modules/web_module_aboutus.c"
 #include "modules/web_module_companion.c"
+#include "modules/web_module_popup_headers.c"
 
 #define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
 #define QS_LEN 65536
@@ -37,7 +40,7 @@ int processPostData(char *postData){
   char smartDnsProviderSecondary[1024];
   int n;
   system("echo \"posting\" > /data/www/tmp2.tmp");
-  sscanf(postData, "action=%[0-9a-zA-Z]", &action);
+  //sscanf(postData, "action=%[0-9a-zA-Z]", &action);
 
   //postData = "action=update&section=thisone&";
   //sscanf(postData, "action=%[0-9a-zA-Z]&section=%[0-9a-zA-Z]&field=%[0-9a-zA-Z]&value=%[0-9a-zA-Z.:/-%]&", &action, &section, &field, &value);
@@ -86,19 +89,24 @@ int processPostData(char *postData){
 
 //main function for web services
 int main(void) {
-  printf( "HTTP/1.1 200 OK\n" );
-  printf( "Content-Type: text/html; charset=UTF-8\n" );
+
+
   
   long n;
   char strPage[1023];
+  char strFooters[1023];
+  char strHeaders[1023];
+  char strPopup[1023];
   char str[1024];
   char *data;
   char *token;
+  char *headers;
+  char *page = NULL;
   const char *key, *value;
   char *postBuffer = NULL;
   int postRead;
   unsigned int postLen;
-  char *postData;
+  char postData[4096];
   char * queryString;
   char query_action[1024];
   char query_section[1024];
@@ -125,12 +133,12 @@ int main(void) {
      token = strtok (NULL, "&");     
       }
     }
-    //handle post data
 
 
 
-    postRead = getline(&postBuffer, &postLen, stdin);
+   postRead = getline(&postBuffer, &postLen, stdin);
     if (-1 != postRead){
+      //printf("\n\n\npostbuffer: %s", postBuffer);
       strcpy(postData, postBuffer);
     }
     
@@ -139,8 +147,9 @@ int main(void) {
              processPostData(postData);
 	     web_module_headers(strPage);
              web_module_settings();
+	     web_module_footer();
         }
-    //printf(postData);
+    //printf("\n\n\n %s", postData);
     //
     free(postBuffer);
     
@@ -153,45 +162,70 @@ int main(void) {
     if (getenv("QUERY_STRING")) {
       //parse Query_STRING for page
       //query string present
+      //sscanf(getenv("QUERY_STRING"), "headers=%[0]", headers); 
       token = strtok (getenv("QUERY_STRING"),"&");
       while (token != NULL) {
       sscanf(token, "%[^=]=%65536s", key, value); 
       if ( compStr(key, "page", sizearray(key) )) { 
-      //check for which page to load
-	web_module_headers(value);
-         if ( compStr(value, "home", sizearray(key) )) { 
-             web_module_home();
-         }
-         if ( compStr(value, "logcat", sizearray(key) )) { 
-             web_module_logcat();
-         }
-         if ( compStr(value, "settings", sizearray(key) )) { 
-             web_module_settings();
-         }
-         if ( compStr(value, "status", sizearray(key) )) { 
-             web_module_status();
-         }
-         if ( compStr(value, "companion", sizearray(key) )) { 
-             web_module_companion();
-         }
-         if ( compStr(value, "Reboot", sizearray(key) )) { 
-             reboot();
-         }
-      } else {
-     web_module_headers("home");
-     web_module_home();
-     }
-
-     token = strtok (NULL, "&");     
+      strcpy(strPage, value);
+      }
+      if ( compStr(key, "headers", sizearray(key) )) { 
+      strcpy(strHeaders, value);
+      }
+      if ( compStr(key, "footers", sizearray(key) )) { 
+      strcpy(strFooters, value);
+      }
+      if ( compStr(key, "popup", sizearray(key) )) { 
+      strcpy(strPopup, value);
+      }
+      token = strtok (NULL, "&"); 
       }
 
-      
-     
+      //check for which page to load
+ 	if ( compStr(strHeaders, "0", sizearray(strHeaders) )) { 
+	
+	//printf("header is %s", getenv("QUERY_STRING"));
+	} else { web_module_headers(strPage); }
 
+
+ 	if ( compStr(strPopup, "1", sizearray(strHeaders) )) { 
+	web_module_popup_headers(strPage);
+	}
+
+
+
+         if ( compStr(strPage, "home", sizearray(strPage) )) { 
+             web_module_home();
+         }
+         if ( compStr(strPage, "logcat", sizearray(strPage) )) { 
+             web_module_logcat();
+         }
+         if ( compStr(strPage, "debug", sizearray(strPage) )) { 
+             web_module_debug();
+         }
+         if ( compStr(strPage, "settings", sizearray(strPage) )) { 
+             web_module_settings();
+         }
+         if ( compStr(strPage, "status", sizearray(strPage) )) { 
+             web_module_status();
+         }
+         if ( compStr(strPage, "companion", sizearray(strPage) )) { 
+             web_module_companion();
+         }
+         if ( compStr(strPage, "aboutus", sizearray(strPage) )) { 
+             web_module_aboutus();
+         }
+         if ( compStr(strPage, "Reboot", sizearray(strPage) )) { 
+             reboot();
+         }
+
+	if ( compStr(strFooters, "0", sizearray(strFooters) )) { 
+	
+	} else { web_module_footer(); }
     }
 }
 
 
-  web_module_footer();
+  
 }
 
