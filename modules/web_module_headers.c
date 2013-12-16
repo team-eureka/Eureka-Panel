@@ -1,4 +1,5 @@
 #define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
+
 int web_module_headers(const char * page){
   printf( "HTTP/1.1 200 OK\n" );
   printf( "Content-Type: text/html; charset=UTF-8\n" );
@@ -39,7 +40,6 @@ printf("\n          <div class=\"futurico-content\">");
 printf("\n            <div class=\"site-info\">");
 printf("\n              <h1 class=\"sitename\">");
 printf("\n                <img src=\"te_logo_web.png\"/>");
-printf("\n                <span class=\"version\">1.0</span>");
 printf("\n              </h1>");
 printf("\n              <div class=\"about\">");
 printf("\n                <span class=\"legend-left\"></span>");
@@ -58,7 +58,7 @@ printf("\n");
 printf("\n        <div class=\"mbl\">");
 printf("\n          <div class=\"header\">");
 printf("\n            <div class=\"wrapper clearfix\">");
-printf("\n              <div class=\"col1of4 header-controls\">Build Version: 1.0.0 (11/30/2013)");
+printf("\n              <div class=\"col1of4 header-controls\">Build Version: VERSION.REVISION (BUILDDATE)");
 printf("\n              </div>");
 printf("\n              <div class=\"col1of2\">");
 printf("\n                <ul class=\"header-navigation\">");

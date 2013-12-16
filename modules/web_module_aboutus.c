@@ -13,11 +13,14 @@ int web_module_aboutus(void){
 
 	printf("The unique skills of each member of the team provides a full compliment of abilities that can be called upon and it is clear that together; Team Eureka has the best chance of achieving the best advancement for the rooted Chromecast community.<br /><br />\n");
 
-	printf("We hope that you are as excited about the current projects of the team as we are and we look forward to aligning the Chromecast device with our vision. We hope one day that google will share this vision of the device with the world.<br /><br /><br />\n");
+	printf("We hope that you are as excited about the current projects of the team as we are and we look forward to aligning the Chromecast device with our vision. We hope one day that google will share this vision of the device with the world.<br /><br />\n");
+
+//Line Break
+	printf("<hr/><br />\n");
 
 //DD
 
-	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">ddggttff3 - Release Manager, Developer</font><br />www.twitter.com/riptide_wave <br/>www.github.com/riptidewave93<br /><br />\n");
+	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">ddggttff3 - Release Manager, Developer</font><br /><b>www.twitter.com/riptide_wave</b> <br/><b>www.github.com/riptidewave93</b><br /><br />\n");
 
 	printf("Chris Blake (ddggttff3) provides a great deal of passion to the team while also being a full time student studying in the field of System and Network Administration. He is enthusiastic and determined to provide a rich experience to the Chromecast community, while also helping increase the functionality of the device. To the rest of the team he is known as the unappointed “head of logistics”.<br /><br />");
 
@@ -35,7 +38,7 @@ int web_module_aboutus(void){
 
 
 
-	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">kyonz - Public Relations, Developer</font><br />www.twitter.com/kyonz <br/>www.linkedin.com/in/trevorpreston<br /><br />\n");
+	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">kyonz - Public Relations, Developer</font><br /><b>www.twitter.com/kyonz</b> <br/><b>www.linkedin.com/in/trevorpreston</b><br /><br />\n");
 
 	printf("Trevor Preston (kyonz) hails from the unlikely country of New Zealand (where the ChromeCast is currently unavailable) and when not spending time fighting Sauron spends most of his time working in the world of systems as a Solutions Architect. Interests include following technological advancements in progressing fields and the ethical and ecological impacts that are created as well as having a fond keenness in physical and logical automation which lead him to fall in love with the Chromecast device.<br /><br />");
 

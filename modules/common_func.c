@@ -80,6 +80,12 @@ int reboot (void){
   system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"now\"}\' -X POST)&");
   printf("Your Chromecast will reboot momentarily...");
 }
+
+int factorydatareset (void){
+  system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"fdr\"}\' -X POST)&");
+  printf("Your Chromecast will reboot momentarily into recovery to do a Factory Data Reset...");
+}
+
 //Function to compare 2 character arrays for string comparison
 int compStr (const char *s1, char *s2, size_t sz) {
     while (sz != 0) {

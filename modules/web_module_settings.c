@@ -124,9 +124,9 @@ int web_module_settings(){
   printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>WhiteList</b></font></div></div><br/>\n");
   printRadioFieldChange("Use Google Whitelist", "WhiteList", "useGoogle");
   if(checkBoolValue("WhiteList", "useGoogle") == 0){
-  printRadioFieldChange("Use Local Whitelist", "WhiteList", "useLocal");
+  printRadioFieldChange("Use Cached Whitelist", "WhiteList", "useLocal");
   	if(checkBoolValue("WhiteList", "useLocal") == 0){
-  		printFieldChange("Whitelisting Download URL", "WhiteList", "downloadurl");
+  		printFieldChange("Whitelist Download URL", "WhiteList", "downloadurl");
   	}
   }
   printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>DNS</b></font></div></div><br/>\n");
@@ -142,9 +142,15 @@ int web_module_settings(){
   	printFieldValue("Secondary DNS Server", "DNS", "Secondary");
   }
   }
-  printf("<div style=\"display: inline-block\"><button type=\"submit\">Apply Updates</button></form>");
-  printf("<form onsubmit=\"return confirm('Are you sure you want to Reboot your chromecast?');\" id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"Reboot\">Reboot Device</button></form></div></div>\n");
+  printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>Services</b></font></div></div><br/>\n");
+  printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:500px\">Note: A reboot is required for these to take effect</div></label></div><br/>");
+  printRadioFieldChange("SSH", "Services", "ssh");
+  printRadioFieldChange("Telnet", "Services", "telnet");
+  printRadioFieldChange("ADB", "Services", "adb");
 
+  printf("<div style=\"display: inline-block\"><button type=\"submit\">Apply Updates</button></form>");
+  printf("<form onsubmit=\"return confirm('Are you sure you want to reboot your chromecast?');\" id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"Reboot\">Reboot Device</button></form>\n");
+  printf("<form onsubmit=\"return confirm('Are you sure you want to reset your chromecast to factory settings? This will delete all configuration changes and reset the device.');\" id=\"form2\" name=\"form2\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"factorydatareset\">Factory Reset</button></form></div></div>\n");
   
 
 }

@@ -1,29 +1,30 @@
 /*
-This module presents logcat information to the user
+This module presents basic device information to the user
 */
 
 int web_module_status(void){
-      //Read whitelist from file, print to web.
+
   	FILE *ptr_file;
-        char buf[1000];
-  	//check if whitelist apps.conf exists in data (if not use system apps.conf)
-         system("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $2}' | busybox cut -c6- > /tmp/tmp.tmp");
-        ptr_file=fopen("/tmp/tmp.tmp","r");
+       char buf[1000];
+  	
+	 ptr_file = popen("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $2}' | busybox cut -c6-","r");
         while (fgets(buf,1000, ptr_file)!=NULL){
           printf( "IP address is: <font style=\"color:white;\"> <b>%s</b></font><br />", buf );
         }
-         system("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $4}' | busybox cut -c6- > /tmp/tmp.tmp");
-        ptr_file=fopen("/tmp/tmp.tmp","r");
+
+        ptr_file=popen("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $4}' | busybox cut -c6-","r");
         while (fgets(buf,1000, ptr_file)!=NULL){
           printf( "Subnet mask is: <font style=\"color:white;\"> <b>%s</b></font> <br />", buf );
         }
 
-         system("busybox route -n | busybox grep -e \"UG\" | busybox awk '{print $2}' > /tmp/tmp.tmp");
-        ptr_file=fopen("/tmp/tmp.tmp","r");
+        ptr_file=popen("busybox route -n | busybox grep -e \"UG\" | busybox awk '{print $2}' ","r");
         while (fgets(buf,1000, ptr_file)!=NULL){
           printf( "Default gateway is: <font style=\"color:white;\"> <b>%s</b></font> <br />", buf );
         }
-        system("rm /tmp/tmp.tmp");
 
+        ptr_file=popen("cat /sys/devices/platform/mv88de3100-hwmon.0/hwmon/hwmon0/tsen_temp","r");
+        while (fgets(buf,1000, ptr_file)!=NULL){
+          printf( "System Temp: <font style=\"color:white;\"> <b>%sC</b></font> <br />", buf );
+        }
 }
 

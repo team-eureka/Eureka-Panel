@@ -218,6 +218,9 @@ int main(void) {
          if ( compStr(strPage, "Reboot", sizearray(strPage) )) { 
              reboot();
          }
+         if ( compStr(strPage, "factorydatareset", sizearray(strPage) )) { 
+             factorydatareset();
+         }
 
 	if ( compStr(strFooters, "0", sizearray(strFooters) )) { 
 	
