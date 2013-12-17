@@ -1,5 +1,8 @@
 #define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
 
+FILE *ptr_file;
+char buf[1000];
+
 int web_module_headers(const char * page){
   printf( "HTTP/1.1 200 OK\n" );
   printf( "Content-Type: text/html; charset=UTF-8\n" );
@@ -58,7 +61,19 @@ printf("\n");
 printf("\n        <div class=\"mbl\">");
 printf("\n          <div class=\"header\">");
 printf("\n            <div class=\"wrapper clearfix\">");
-printf("\n              <div class=\"col1of4 header-controls\">Build Version: VERSION.REVISION (BUILDDATE)");
+printf("\n              <div class=\"col1of4 header-controls\">Build Version: ");
+ptr_file=popen("grep -e '^ro.build.version.incremental=' /build.prop | busybox cut -d '=' -f 2 | busybox tr '\n' ' ' | busybox sed 's/ //g'","r");
+while (fgets(buf,1000, ptr_file)!=NULL){
+  printf( "%s.", buf );
+}
+ptr_file=popen("cat /system/etc/chromecast-ota.rev","r");
+while (fgets(buf,1000, ptr_file)!=NULL){
+  printf( "%s", buf );
+}
+ptr_file=popen("EurekaSettings get EurekaRom buildDate","r");
+while (fgets(buf,1000, ptr_file)!=NULL){
+  printf( " (%s)", buf );
+}
 printf("\n              </div>");
 printf("\n              <div class=\"col1of2\">");
 printf("\n                <ul class=\"header-navigation\">");
