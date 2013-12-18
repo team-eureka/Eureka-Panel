@@ -13,7 +13,7 @@ int web_module_home(void){
 	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
 		printf( "IP address: <font style=\"color:white;\"> <b>%s</b></font>", path );
 	}
-
+	pclose(ptr_file);
 
 
 	ptr_file = popen("busybox ipcalc -p 1.1.1.1 $(busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $4}' | busybox cut -c6- ) -s | busybox awk -F \"=\" '{print $2}'", "r");
@@ -25,7 +25,7 @@ int web_module_home(void){
 	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
 		printf("Default gateway: <font style=\"color:white;\"> <b>%s</b></font> <br /><br />", path );
 	}
-
+	pclose(ptr_file);
  
          //check internet connectivity
 	printf("Internet Connectivity:  <b>");
@@ -37,7 +37,9 @@ int web_module_home(void){
              printf("<font style=\"color:Green;\">Available");
          } else { printf("<font style=\"color:Red;\">Unavailable"); }
 
-	}printf("</b></font><br />"); 
+	}
+	pclose(ptr_file);
+	printf("</b></font><br />"); 
 
 
 //more info
@@ -45,5 +47,4 @@ int web_module_home(void){
 	printf("<div class=\"last-col\" style=\"text-align:right;\"><div style=\"padding-left: 50px; width:400px; text-align:right;\"><a class=\"twitter-timeline\" href=\"https://twitter.com/Dev_Team_Eureka\" data-widget-id=\"406686413359300608\">Tweets by @Dev_Team_Eureka</a>\n");
 	printf("<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script></div></div>\n");
 
-system("rm /tmp/tmp.tmp");
 }

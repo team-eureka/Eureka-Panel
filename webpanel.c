@@ -181,18 +181,22 @@ int main(void) {
       token = strtok (NULL, "&"); 
       }
 
+	// Call this before headers
+       if ( compStr(strPage, "dumpstate", sizearray(strPage) )) { 
+           dumpstate();
+	    exit(0);
+       }
+
+
       //check for which page to load
  	if ( compStr(strHeaders, "0", sizearray(strHeaders) )) { 
 	
 	//printf("header is %s", getenv("QUERY_STRING"));
 	} else { web_module_headers(strPage); }
 
-
  	if ( compStr(strPopup, "1", sizearray(strHeaders) )) { 
 	web_module_popup_headers(strPage);
 	}
-
-
 
          if ( compStr(strPage, "home", sizearray(strPage) )) { 
              web_module_home();

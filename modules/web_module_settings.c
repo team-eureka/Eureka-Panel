@@ -151,6 +151,5 @@ int web_module_settings(){
   printf("<div style=\"display: inline-block\"><button type=\"submit\">Apply Updates</button></form>");
   printf("<form onsubmit=\"return confirm('Are you sure you want to reboot your chromecast?');\" id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"Reboot\">Reboot Device</button></form>\n");
   printf("<form onsubmit=\"return confirm('Are you sure you want to reset your chromecast to factory settings? This will delete all configuration changes and reset the device.');\" id=\"form2\" name=\"form2\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"factorydatareset\">Factory Reset</button></form></div></div>\n");
-  
 
 }

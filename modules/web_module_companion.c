@@ -3,9 +3,7 @@ This module presents logcat information to the user
 */
 
 int web_module_companion(void){
-      //Read whitelist from file, print to web.
-  	FILE *ptr_file;
-        char buf[1000];
+        //show the companion
         printf( "Welcome to the Team Eureka Companion" );
   
         printf( "</body> \n" );

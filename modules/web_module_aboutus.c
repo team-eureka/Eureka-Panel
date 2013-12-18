@@ -1,19 +1,14 @@
 /*
-This module presents the home screen to the user
+This module presents the about us page
 */
-#define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
 
 int web_module_aboutus(void){
-  	FILE *ptr_file;
-        char buf[1000];
- 	char path[1035];
+
 	printf("<div><font style=\"font-weight: bold; font-size: 2em; color:white\">Team Eureka</font><br /><br />\n");
 
-	printf("Team Eureka was formed in early November 2013 with the joining of the main contributors to the XDA Chromecast community, which included ddggttff3, kyonz, and tchebb. The objectives of the team is to provide the best device experience to the community, to encourage development from other users, and to remain clear and transparent in both our operation and our releases. The group was formed to transform the Chromecast into the device Google engineers clearly envisioned, but were hamstrung from executing due to external influences. (Thanks Obama!)<br /><br />\n");
+	printf("Team Eureka was founded early in November of 2013 by ddggttff3, kyonz, and tchebb, three of the main contributors to XDA-Developers' Chromecast community. Our objective is to make the Chromecast an open and extensible device, free from Google's restrictive whitelisting. Our current projects allow rooted Chromecasts to bypass the whitelist and location restrictions imposed by content providers (Thanks Obama!), and we're working hard to unlock more of the Chromecast's full potential.<br /><br />\n");
 
-	printf("The unique skills of each member of the team provides a full compliment of abilities that can be called upon and it is clear that together; Team Eureka has the best chance of achieving the best advancement for the rooted Chromecast community.<br /><br />\n");
-
-	printf("We hope that you are as excited about the current projects of the team as we are and we look forward to aligning the Chromecast device with our vision. We hope one day that google will share this vision of the device with the world.<br /><br />\n");
+	printf("Together, our members' unique skills allow us to develop for the Chromecast on all levels, from frontend design to low-level vulnerability research and anywhere in between. We hope that you're as excited as we are about our current projects, and we look forward to showing you what's still to come.<br /><br />\n");
 
 //Line Break
 	printf("<hr/><br />\n");
@@ -27,9 +22,9 @@ int web_module_aboutus(void){
 	printf(" Notable mentions to the Chromecast community include PwnedCast, and his Tutorial Videos.<br /><br />");
 
 //Tchebb
-	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">tchebb - Quality Assurance, Developer</font><br /><br />\n");
+	printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">tchebb - Quality Assurance, Developer</font><br /><b>www.github.com/tchebb</b><br /><br />\n");
 
-	printf("Thomas Hebb (tchebb) is the purest definition of a young prodigy and the team is incredibly proud to have him as a key member. If you need a linux guru, or an obscure graphics driver developed - he’s your #1 man. When he is not developing for FlashCast or submitting patches to Arch Linux, he is working on his education at *RETRACTED*. He one day hopes to work for *RETRACTED* although chances are good that one day they’ll hope to work for him.<br /><br />");
+	printf("Thomas Hebb (tchebb) likes to think of himself as the last barrier to low-quality code, a valiant defender against typos, brain farts, and buggy edge cases, but is in reality probably just a picky perfectionist who gets in everyone's way. He is currently in high school studying computer science before entering university, and loves playing with any new gadget he can get his hands on.<br /><br />");
 
 	printf("Notable mentions to the Chromecast community include FlashCast and providing early insight and development that has formed the basis for the rooted Chromecast community.<br /><br />");
 

@@ -66,14 +66,17 @@ ptr_file=popen("grep -e '^ro.build.version.incremental=' /build.prop | busybox c
 while (fgets(buf,1000, ptr_file)!=NULL){
   printf( "%s.", buf );
 }
+pclose(ptr_file);
 ptr_file=popen("cat /system/etc/chromecast-ota.rev","r");
 while (fgets(buf,1000, ptr_file)!=NULL){
   printf( "%s", buf );
 }
+pclose(ptr_file);
 ptr_file=popen("EurekaSettings get EurekaRom buildDate","r");
 while (fgets(buf,1000, ptr_file)!=NULL){
   printf( " (%s)", buf );
 }
+pclose(ptr_file);
 printf("\n              </div>");
 printf("\n              <div class=\"col1of2\">");
 printf("\n                <ul class=\"header-navigation\">");

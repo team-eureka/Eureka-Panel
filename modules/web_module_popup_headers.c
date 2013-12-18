@@ -1,4 +1,3 @@
-#define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
 int web_module_popup_headers(const char * page){
   printf( "HTTP/1.1 200 OK\n" );
   printf( "Content-Type: text/html; charset=UTF-8\n" );

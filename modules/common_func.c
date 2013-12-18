@@ -12,6 +12,9 @@
 char * systemConfigValue = "/system/usr/share/eureka-apps/configs/eureka.ini";
 char * userConfigValue = "/data/eureka/eureka.ini";
 
+FILE *ptr_file;
+char buf[1000];
+  	
 void urldecode2(char *dst, const char *src)
 {
         char a, b;
@@ -84,6 +87,20 @@ int reboot (void){
 int factorydatareset (void){
   system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"fdr\"}\' -X POST)&");
   printf("Your Chromecast will reboot momentarily into recovery to do a Factory Data Reset...");
+}
+
+int dumpstate (void){
+  printf( "HTTP/1.1 200 OK\n" );
+  printf( "Content-Type: application/json; charset=utf-8\n" );
+  printf( "Cache-Control: no-cache, no-store, max-age=0, must-revalidate\n" );
+  printf( "Pragma: no-cache\n" );
+  printf( "Content-Disposition: attachment; filename=\"dumpstate\"; filename*=UTF-8''dumpstate\n" );
+  printf( "Transfer-Encoding: chunked\n\n" );
+  ptr_file=popen("dumpstate","r");
+  while (fgets(buf,1000, ptr_file)!=NULL){
+    printf( "%s", buf );
+  }
+  pclose(ptr_file);
 }
 
 //Function to compare 2 character arrays for string comparison

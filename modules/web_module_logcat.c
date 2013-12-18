@@ -13,5 +13,6 @@ int web_module_logcat(void){
 	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
 		printf( "%s <br />", path );
 	}
+	pclose(ptr_file);
 
 }
