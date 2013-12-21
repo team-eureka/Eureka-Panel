@@ -98,6 +98,8 @@ int main(void) {
   char strHeaders[1023];
   char strPopup[1023];
   char str[1024];
+  char command[1024] = "echo Welcome to EurekaRom";
+  char decodedCommand[1024];
   char *data;
   char *token;
   char *headers;
@@ -141,7 +143,16 @@ int main(void) {
       //printf("\n\n\npostbuffer: %s", postBuffer);
       strcpy(postData, postBuffer);
     }
-    
+
+   if (compStr(strPage, "debug", sizearray(strPage) )) { 
+             //printf("\n\npostData: %s", postData);
+	     sscanf(postData, "page=debug&command=%[^,]", command);
+ 	     urldecode2(decodedCommand, command);
+	     web_module_headers(strPage);
+             web_module_debug(decodedCommand);
+	     web_module_footer();
+  }
+
    if (compStr(strPage, "settings", sizearray(strPage) )) { 
              
              processPostData(postData);
@@ -205,7 +216,7 @@ int main(void) {
              web_module_logcat();
          }
          if ( compStr(strPage, "debug", sizearray(strPage) )) { 
-             web_module_debug();
+             web_module_debug(command);
          }
          if ( compStr(strPage, "settings", sizearray(strPage) )) { 
              web_module_settings();

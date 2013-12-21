@@ -75,7 +75,7 @@ int printDNSProviders(){
   char buf[1024];
   char *token;
   char providerDisplayName[1024];
-  char selectedProvider[1023];
+  char selectedProvider[1024];
   char *selectedProviderText;
   char *providerPrimaryIP;
   char *providerSecondaryIP;

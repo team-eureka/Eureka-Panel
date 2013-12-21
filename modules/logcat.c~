@@ -1,0 +1,14 @@
+int web_module_logcat(void){
+	printf("I'm a logcat yes I am");
+      //Read whitelist from file, print to web.
+  	FILE *ptr_file;
+  	char buf[1000];
+  	//check if whitelist apps.conf exists in data (if not use system apps.conf)
+         system("logcat -d -t 15 -v time -f /data/www/logcat.tmp");
+         ptr_file=fopen("/data/www/logcat.tmp","r");
+
+        while (fgets(buf,1000, ptr_file)!=NULL){
+          printf( " %s <br />", buf );
+        }
+        system("rm /data/www/logcat.tmp");
+}

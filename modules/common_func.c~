@@ -20,7 +20,7 @@ void urldecode2(char *dst, char *src)
         char a, b;
         while (*src) {
 		if (*src == '+') {
-			*src = ' ';
+			*src = '\n';
 		}
                 if ((*src == '%') &&
                     ((a = src[1]) && (b = src[2])) &&

@@ -25,7 +25,7 @@ printf("<div class=\"text dark\"><label style=\"text-align: left; display: inlin
 
 	ptr_file = popen(command, "r");
 	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
-		printf( "%s", path );
+		printf( "%s <br />", path );
 	}
 	pclose(ptr_file);
 
