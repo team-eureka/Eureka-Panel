@@ -151,7 +151,7 @@ int web_module_settings(){
   //end whitelist selection code
 
   	if(checkStringValue("WhiteList", "useSelection", "3")){
-  		printFieldChange("Whitelist Download URL", "WhiteList", "downloadurl");
+  		printFieldChange("Whitelist Download URL", "WhiteList", "customURL");
   	}
 
   printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>DNS</b></font></div></div><br/>\n");
