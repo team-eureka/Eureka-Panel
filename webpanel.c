@@ -48,6 +48,7 @@ int processPostData(char *postData){
  
   //urldecode2(decValue, value);
   if(compStr(action, "update", sizearray(action))){
+  system("chmod 777 /data/eureka");
   token = strtok (postData,"&");
         while (token != NULL) {
 	urldecode2(decodedToken, token);
