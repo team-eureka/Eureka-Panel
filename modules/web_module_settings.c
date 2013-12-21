@@ -108,7 +108,7 @@ int printDNSProviders(){
   
   printf("<option value=\"other\" %s>Other (Please Specify)</option>", selectedProviderText);
 
-  printf("</select></div><br/><br/>");
+  printf("</select></div></div><br/><br/>");
   
 }
 
