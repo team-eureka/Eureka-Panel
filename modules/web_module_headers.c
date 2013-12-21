@@ -9,6 +9,7 @@ int web_module_headers(const char * page){
   //Print headers
   printf("\n<html>\n<head>\n<meta charset=\"utf-8\" /><title>Chromecast Configuration Panel - Eureka Rom</title>\n");
   //jquery insert
+printf("\n <!-- EurekaRom Web Panel by Team Eureka. Utilises Futurico UI (http://designmodo.com) -->");
 printf("\n    <link href=\"bundle.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />");
 printf("\n    <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\" type=\"text/javascript\"></script>");
 printf("\n    <script src=\"javascripts/vendor/jquery-ui-1.8.18.custom.min.js\" type=\"text/javascript\"></script>");
