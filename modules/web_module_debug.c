@@ -21,7 +21,7 @@ int web_module_debug(char *command){
 
   printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:120px\">Send Command: </div></label><form id=\"form1\" name=\"form1\" method=\"post\" action=\"\" style=\"display: inline-block\"><input name=\"page\" type=\"hidden\" id=  \"debug\" value=\"debug\" /><input name=\"command\" type=\"text\" id=\"command\" value=\"%s\" size=\"30\" style=\"width:500px\" /></form></div><br />", command);
 
-printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:120px\">Output: </div></label><textarea size=\"30\" style=\"width:500px\" class=\"text dark\">");
+printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:120px\">Output: </div></label><textarea size=\"30\" rows=\"15\" style=\"width:500px; background:#141517; color:white; border:1px; border-color:black\" class=\"text dark\">");
 
 	ptr_file = popen(command, "r");
 	while (fgets(path, sizeof(path)-1, ptr_file) != NULL) {
