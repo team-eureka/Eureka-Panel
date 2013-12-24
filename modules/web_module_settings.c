@@ -10,29 +10,22 @@
 /*
 This module handles post of settings
 */
-//Format functions
 
+//Format functions
 int printFieldChange(char *DisplayName, char *Section, char *Field)
 {
     long n;
     char str[1024];
-    //printf ("Section %s, Field %s", Section, Field);
     read_config_var(Section, Field, str);
     printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:200px\">%s</div></label><input name=\"%s/%s\" type=\"text\" id=\"value\" value=\"%s\" size=\"30\" style=\"width:300px\"/></div><br />\n", DisplayName, Section, Field,  str );
-
 }
-
 int printFieldValue(char *DisplayName, char *Section, char *Field)
 {
     long n;
     char str[1024];
-    //printf ("Section %s, Field %s", Section, Field);
     read_config_var(Section, Field, str);
     printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:200px\">%s</div></label><label style=\"text-align: left; display: inline-block\"><div style=\"width:300px\">%s</div></label></div><br />\n", DisplayName, str );
-
 }
-
-
 int printRadioFieldChange(char *DisplayName, char *Section, char *Field)
 {
     long n;
@@ -40,9 +33,7 @@ int printRadioFieldChange(char *DisplayName, char *Section, char *Field)
     char *enableChk = "";
     char *disableChk = "";
     bool valueStatus;
-    //printf ("Section %s, Field %s", Section, Field);
     read_config_var(Section, Field, str);
-
     if(checkBoolValue(Section, Field) == 0)
     {
         disableChk = "checked";
@@ -51,7 +42,6 @@ int printRadioFieldChange(char *DisplayName, char *Section, char *Field)
     {
         enableChk = "checked";
     }
-
     printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:200px\">%s</div></label><div style=\"width:300px; text-align:left; display: inline-block\"><input type=\"radio\" name=\"%s/%s\" id=\"value\" value=\"1\" size=\"30\" style=\"width:30px\" %s/>Enable <input type=\"radio\" name=\"%s/%s\" id=\"value\" value=\"0\" size=\"30\" style=\"width:30px\" %s/> Disable </div></div><br />\n", DisplayName, Section, Field, enableChk, Section, Field, disableChk );
 
 }
@@ -69,7 +59,6 @@ int checkBoolValue(char *Section, char *Field)
         return 1;
     }
 }
-
 int checkStringValue(char *Section, char *Field, char *Value)
 {
     long n;
@@ -84,7 +73,6 @@ int checkStringValue(char *Section, char *Field, char *Value)
         return 0;
     }
 }
-
 int printDNSProviders()
 {
     long n;
@@ -105,7 +93,6 @@ int printDNSProviders()
     token = strtok (str,",");
     while (token != NULL)
     {
-
         if(compStr(selectedProvider, token, sizearray(selectedProvider)))
         {
             selectedProviderText = "selected";
@@ -119,9 +106,7 @@ int printDNSProviders()
         strcat(buf, token);
         //get DisplayName from config
         read_config_var(buf, "displayName", providerDisplayName);
-
         printf("<option value=\"%s\" %s>%s</option>", token, selectedProviderText, providerDisplayName);
-
         token = strtok (NULL, ",");
     }
     //check if other is selectedProvider
@@ -133,14 +118,9 @@ int printDNSProviders()
     {
         selectedProviderText = "";
     }
-
     printf("<option value=\"other\" %s>Other (Please Specify)</option>", selectedProviderText);
-
     printf("</select></div></div><br/><br/>");
-
 }
-
-
 int web_module_settings()
 {
     char selectedWhitelistProvider[1024];
@@ -154,7 +134,6 @@ int web_module_settings()
     printf("<input name=\"page\" type=\"hidden\" id=  \"settings\" value=\"settings\" />");
     printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>Rom Settings</b></font></div></div><br/>\n");
     printRadioFieldChange("Team Eureka OTA Updates", "EurekaRom", "ota");
-
     printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>WhiteList</b></font></div></div><br/>\n");
     //whitelist selection code
     read_config_var("WhiteList", "useSelection", selectedWhitelistProvider);
@@ -174,22 +153,16 @@ int web_module_settings()
     {
         WhitelistProvider3selected = "selected";
     }
-
-
     printf("<div class=\"text dark\">");
     printf("<label style=\"text-align: left; display: inline-block\"><div style=\"width:200px\">Whitelist Provider</div></label>");
     printf("<div style=\"width:300px; text-align:left; display:inline-block\"><select name=\"WhiteList/useSelection\" style=\"background: #141517; color: white; border-color: black; border-style: solid; border-width: 1px; width: 300px; border-radius: 2px; height: 26px; \">");
     printf("<option value=\"0\" %s>Team Eureka</option><option value=\"1\" %s>Google</option><option value=\"2\" %s>Locally Stored</option><option value=\"3\" %s>Other (Please Specify)</option></select></div></div><br />", WhitelistProvider0selected, WhitelistProvider1selected, WhitelistProvider2selected, WhitelistProvider3selected);
-
     //end whitelist selection code
-
     if(checkStringValue("WhiteList", "useSelection", "3"))
     {
         printFieldChange("Whitelist Download URL", "WhiteList", "customURL");
     }
-
     printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>DNS</b></font></div></div><br/>\n");
-
     printRadioFieldChange("Use DHCP", "DNS", "useDHCP");
     if(checkBoolValue("DNS", "useDHCP") == 0)
     {
@@ -210,9 +183,7 @@ int web_module_settings()
     printRadioFieldChange("SSH", "Services", "ssh");
     printRadioFieldChange("Telnet", "Services", "telnet");
     printRadioFieldChange("ADB", "Services", "adb");
-
-    printf("<br /><div style=\"display: inline-block\"><button type=\"submit\">Apply Updates</button> </form>");
+    printf("<br /><div style=\"display: inline-block\"><button type=\"submit\">Apply Changes</button> </form>");
     printf("<form onsubmit=\"return confirm('Are you sure you want to reboot your chromecast?');\" id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"Reboot\">Reboot Device</button></form>\n");
     printf("<form onsubmit=\"return confirm('Are you sure you want to reset your chromecast to factory settings? This will delete all configuration changes and reset the device.');\" id=\"form2\" name=\"form2\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"factorydatareset\">Factory Reset</button></form></div></div>\n");
-
 }

@@ -6,11 +6,12 @@ This module presents the home screen to the user
 
 int web_module_home(void)
 {
+
     FILE *ptr_file;
     char buf[1000];
     char path[1035];
+	
     printf("<div class=\"col1of2\"><font style=\"font-weight: bold; font-size: 2em; color:white\">Device Status</font><br /><br />\n");
-
     ptr_file = popen("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $2}' | busybox cut -c6- ", "r");
     while (fgets(path, sizeof(path)-1, ptr_file) != NULL)
     {
@@ -18,13 +19,13 @@ int web_module_home(void)
     }
     pclose(ptr_file);
 
-
     ptr_file = popen("busybox ipcalc -p 1.1.1.1 $(busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $4}' | busybox cut -c6- ) -s | busybox awk -F \"=\" '{print $2}'", "r");
     while (fgets(path, sizeof(path)-1, ptr_file) != NULL)
     {
         printf( "<font style=\"color:white;\"><b>/%s</b></font> <br />", path );
     }
-
+    pclose(ptr_file);
+	
     ptr_file = popen("busybox route -n | busybox grep -e \"UG\" | busybox awk '{print $2}'", "r");
     while (fgets(path, sizeof(path)-1, ptr_file) != NULL)
     {

@@ -9,7 +9,6 @@ int web_module_status(void)
     char buf[1000];
 
     printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Network Status</font><br/>");
-
     ptr_file = popen("busybox ifconfig | busybox grep -e \"inet:\" -e \"addr:\" | busybox grep -v \"inet6\" | busybox grep -v \"127.0.0.1\" | busybox head -n 1 | busybox awk '{print $2}' | busybox cut -c6-","r");
     while (fgets(buf,1000, ptr_file)!=NULL)
     {
@@ -54,6 +53,4 @@ int web_module_status(void)
         printf( "Serial #: <font style=\"color:white;\"> <b>%s</b></font> <br />", buf );
     }
     pclose(ptr_file);
-
 }
-
