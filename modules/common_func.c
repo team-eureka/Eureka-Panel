@@ -97,13 +97,22 @@ long write_config_var(const char *w_Section, const char *w_Key, const char *w_Va
 int reboot (void)
 {
     system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"now\"}\' -X POST)&");
-    printf("Your Chromecast will reboot momentarily...");
+    printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Your Chromecast will reboot momentarily...</font><br />");
 }
 
 int factorydatareset (void)
 {
     system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"fdr\"}\' -X POST)&");
-    printf("Your Chromecast will reboot momentarily into recovery to do a Factory Data Reset...");
+    printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Your Chromecast will reboot momentarily into recovery to do a Factory Data Reset...</font><br />");
+}
+
+int forceupdatecheck (void)
+{
+    // We should have a better way of doing this, but the only 2 things that use sleep
+    // are the OTA system, and the empty loop in the replaced update-engine.
+    system("(busybox killall sleep)&");
+    printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Restarting the Update Service... Run \"cat /tmp/chromecast-ota.log\" on the Debug page to check the status.</font><br />");
+
 }
 
 int dumpstate (void)

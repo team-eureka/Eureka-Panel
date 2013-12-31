@@ -129,6 +129,7 @@ int web_module_settings()
     char* WhitelistProvider2selected = "";
     char* WhitelistProvider3selected = "";
     //echo out current used variables
+    printf("<font style=\"font-weight: bold; font-size: 2em; color:white\">Device Settings</font><br />\n");
     printf("<div align=\"center\" style=\"text-align:center;\">");
     printf("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"\">  <input name=\"action\" type=\"hidden\" id=  \"action\" value=\"update\" />");
     printf("<input name=\"page\" type=\"hidden\" id=  \"settings\" value=\"settings\" />");

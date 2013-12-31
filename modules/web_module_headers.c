@@ -64,13 +64,7 @@ int web_module_headers(const char * page)
     printf("\n          <div class=\"header\">");
     printf("\n            <div class=\"wrapper clearfix\">");
     printf("\n              <div class=\"col1of4 header-controls\">Build Version: ");
-    ptr_file=popen("grep -e '^ro.build.version.incremental=' /build.prop | busybox cut -d '=' -f 2 | busybox tr '\n' ' ' | busybox sed 's/ //g'","r");
-    while (fgets(buf,1000, ptr_file)!=NULL)
-    {
-        printf( "%s.", buf );
-    }
-    pclose(ptr_file);
-    ptr_file=popen("cat /system/etc/chromecast-ota.rev","r");
+    ptr_file=popen("grep -e '^ro.build.version.incremental=' /build.prop | busybox cut -d '=' -f 2 | busybox tr '\n' '.' && cat /system/etc/chromecast-ota.rev","r");
     while (fgets(buf,1000, ptr_file)!=NULL)
     {
         printf( "%s", buf );

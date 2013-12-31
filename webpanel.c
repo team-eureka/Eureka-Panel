@@ -210,6 +210,10 @@ int main(void)
             {
                 web_module_logcat();
             }
+            if ( compStr(strPage, "forceupdatecheck", sizearray(strPage) ))
+            {
+                forceupdatecheck();
+            }
             if ( compStr(strPage, "debug", sizearray(strPage) ))
             {
                 web_module_debug(command);
