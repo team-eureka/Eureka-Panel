@@ -100,6 +100,11 @@ int reboot (void)
     printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Your Chromecast will reboot momentarily...</font><br />");
 }
 
+int sysupdate (void)
+{
+printf("<font style=\"font-size: 3em; color:white\">Your Chromecast will reboot momentarily into recovery to do a System Update...</font><br />");
+}
+
 int factorydatareset (void)
 {
     system("(curl -H \"Content-Type: application/json\" http://localhost:8008/setup/reboot -d \'{\"params\":\"fdr\"}\' -X POST)&");

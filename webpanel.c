@@ -238,6 +238,10 @@ int main(void)
             {
                 reboot();
             }
+            if ( compStr(strPage, "sysupdate", sizearray(strPage) ))
+            {
+                sysupdate();
+            }
             if ( compStr(strPage, "factorydatareset", sizearray(strPage) ))
             {
                 factorydatareset();
