@@ -57,22 +57,28 @@ int web_module_status(void)
         strcpy(verinfo,buf);
     }
     pclose(ptr_file);
-    snprintf(command, 1000, "curl \"http://ota.team-eureka.com/ota/vercheck.php?version=%s\"", verinfo);
-    ptr_file=popen(command, "r");
+    ptr_file = popen("ping -c 1 -w 1 google.com > /dev/null ; echo $?", "r");
     while (fgets(buf, sizeof(buf)-1, ptr_file) != NULL)
     {
-        if (compStr(buf, "0", sizearray(buf) ))
+        if (compStr(buf, "0\n", sizearray(buf) ))
         {
-            printf("<font style=\"color:Green;\"><b>Up to Date</b>");
-        }
-        else
-        {
-            printf("<font style=\"color:Red;\"><b>Update Available</b>");
+            snprintf(command, 1000, "curl \"http://ota.team-eureka.com/ota/vercheck.php?version=%s\"", verinfo);
+            ptr_file=popen(command, "r");
+            while (fgets(buf, sizeof(buf)-1, ptr_file) != NULL)
+            {
+                if (compStr(buf, "0", sizearray(buf) ))
+                {
+                    printf("<font style=\"color:Green;\"><b>Up to Date</b></font>");
+                }
+                else
+                {
+                    printf("<font style=\"color:Red;\"><b>Update Available</b></font>");
+                }
+            }
         }
     }
+    printf("<br />");
     pclose(ptr_file);
-    printf("</font><br />");
-
     ptr_file=popen("cat /sys/devices/platform/mv88de3100-hwmon.0/hwmon/hwmon0/tsen_temp","r");
     while (fgets(buf,1000, ptr_file)!=NULL)
     {

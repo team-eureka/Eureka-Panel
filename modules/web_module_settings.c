@@ -164,6 +164,7 @@ int web_module_settings()
         printFieldChange("Whitelist Download URL", "WhiteList", "customURL");
     }
     printf("\n<br/><div style=\"display: inline-block\"><div style=\"width:500px; text-align:left\"><font style=\"color:white\"><b>DNS</b></font></div></div><br/>\n");
+    printFieldChange("Device Hostname", "EurekaRom", "hostname");
     printRadioFieldChange("Use DHCP", "DNS", "useDHCP");
     if(checkBoolValue("DNS", "useDHCP") == 0)
     {

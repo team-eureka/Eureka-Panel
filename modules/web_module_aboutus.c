@@ -32,11 +32,18 @@ int web_module_aboutus(void)
 
     //Awesome People
     printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Donators to Team-Eureka:</font><br />");
-    printf("Team Eureka would like to thank the below contributors for their donations.<br /><br />");
+    printf("Team Eureka would like to thank the below contributors for their donations and support.<br /><br />");
     printf("<ul>");
+    printf("<li>yoonus</li>");
+    printf("<li>pangkh81</li>");
+    printf("<li>TheSchatz</li>");
+    printf("<li>grimloktt</li>");
+    printf("<li>bhiga</li>");
+    printf("<li>extrem0</li>");
     printf("<li>wptski</li>");
     printf("<li>xsirex</li>");
     printf("<li>mojolive</li>");
     printf("<li>killall</li>");
+    printf("<li>And most of all, You!</li>");
     printf("</ul>");
 }
