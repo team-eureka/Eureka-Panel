@@ -210,9 +210,9 @@ int main(void)
             {
                 web_module_logcat();
             }
-            if ( compStr(strPage, "forceupdatecheck", sizearray(strPage) ))
+            if ( compStr(strPage, "forceeurekaupdate", sizearray(strPage) ))
             {
-                forceupdatecheck();
+                forceeurekaupdate();
             }
             if ( compStr(strPage, "debug", sizearray(strPage) ))
             {

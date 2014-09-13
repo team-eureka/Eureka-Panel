@@ -16,7 +16,7 @@ int web_module_debug(char *command)
     printf("<input name=\"popup\" type=\"hidden\" id=  \"popup\" value=\"1\" />");
     printf("<input name=\"page\" type=\"hidden\" id=  \"logcat\" value=\"logcat\" />");
     printf("<button name=\"\" type=\"submit\" id=\"ajaxsubmit\" value=\"ajaxsubmit\">Logcat</button></form>\n");
-    printf("<form id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"forceupdatecheck\"  style=\"display: inline-block\">Force Update Check</button></form>\n");
+    printf("<form id=\"form1\" name=\"form1\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page\" type=\"submit\" id=\"page\" value=\"forceeurekaupdate\"  style=\"display: inline-block\">Force Update</button></form>\n");
     printf("<form id=\"form2\" name=\"form2\" method=\"get\" action=\"\" style=\"display: inline-block\"><button name=\"page2\" type=\"submit\" id=\"page2\" value=\"dumpstate\"  style=\"display: inline-block\">Get dumpstate</button></form>\n");
     printf("</div></div><br /><br />\n\n\n");
     printf("<div class=\"text dark\"><label style=\"text-align: left; display: inline-block\"><div style=\"width:120px\">Send Command: </div></label><form id=\"form1\" name=\"form1\" method=\"post\" action=\"\" style=\"display: inline-block\"><input name=\"page\" type=\"hidden\" id=  \"debug\" value=\"debug\" /><input name=\"command\" type=\"text\" id=\"command\" value=\"%s\" size=\"30\" style=\"width:790px\" /> <button style=\"display: inline-block\">Send</button></form></div><br />", command);
