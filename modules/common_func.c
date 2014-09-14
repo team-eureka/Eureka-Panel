@@ -113,7 +113,7 @@ int factorydatareset (void)
 
 int forceeurekaupdate (void)
 {
-    system("(touch /tmp/forceupdate)&");
+    system("(touch /tmp/.ignoreStagedRollout)&");
     // We should have a better way of doing this, but the only 2 things that use sleep
     // are the OTA system, and the empty loop in the replaced update-engine.
     system("(busybox killall sleep)&");
