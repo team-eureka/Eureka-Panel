@@ -113,6 +113,8 @@ int factorydatareset (void)
 
 int forceeurekaupdate (void)
 {
+    // Forcing update even if OTA is disabled.
+    system("(touch /tmp/.chromecastOTAForce)&");
     system("(touch /tmp/.ignoreStagedRollout)&");
     // We should have a better way of doing this, but the only 2 things that use sleep
     // are the OTA system, and the empty loop in the replaced update-engine.
