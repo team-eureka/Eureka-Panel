@@ -102,7 +102,7 @@ int reboot (void)
 
 int sysupdate (void)
 {
-printf("<font style=\"font-size: 3em; color:white\">Your Chromecast will reboot momentarily into recovery to do a System Update...</font><br />");
+    printf("<font style=\"font-size: 3em; color:white\">Your Chromecast will reboot momentarily into recovery to do a System Update...</font><br />");
 }
 
 int factorydatareset (void)
@@ -111,13 +111,16 @@ int factorydatareset (void)
     printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Your Chromecast will reboot momentarily into recovery to do a Factory Data Reset...</font><br />");
 }
 
-int forceupdatecheck (void)
+int forceeurekaupdate (void)
 {
+    // Forcing update even if OTA is disabled.
+    system("(touch /tmp/.chromecastOTAForce)&");
+    system("(touch /tmp/.ignoreStagedRollout)&");
     // We should have a better way of doing this, but the only 2 things that use sleep
     // are the OTA system, and the empty loop in the replaced update-engine.
     system("(busybox killall sleep)&");
-    printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Restarting the Update Service... Run \"cat /tmp/chromecast-ota.log\" on the Debug page to check the status.</font><br />");
-
+    printf("<font style=\"font-weight: bold; font-size: 1.5em; color:white\">Restarting the Update Service and forcing update if available...<br />Run \"cat /tmp/chromecast-ota.log\" on the Debug page to check the status.</font><br />");
+    
 }
 
 int dumpstate (void)
