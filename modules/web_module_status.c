@@ -36,7 +36,7 @@ int web_module_status(void)
     printf("<br />","r");
     printf("<font style=\"font-weight: bold; font-size: 2em; color:white\">System Status</font><br/><br/>");
 
-    ptr_file=popen("cat /data/chrome/.eureka.conf | grep eureka-name | busybox awk -F \":\" '{print $2}' | busybox awk -F '\"' '{print $2}' | busybox tr '\n' ' '","r");
+    ptr_file=popen("cat /data/chrome/.eureka.conf | grep eureka-name | busybox awk -F \":\" '{print $4}' | busybox awk -F '\"' '{print $2}' | busybox tr '\n' ' '","r");
     while (fgets(buf,1000, ptr_file)!=NULL)
     {
         printf( "Device Name: <font style=\"color:white;\"> <b>%s</b></font> <br />", buf );
